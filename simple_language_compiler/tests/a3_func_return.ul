@@ -1,0 +1,22 @@
+void main ()
+{
+    int[1] a;
+    a = foo(1, true, 'a', "b", 1.24);
+    print a[0];
+    println "end";
+}
+
+int[1] foo (int a, boolean b, char c, string d, float e){
+    int[1] arr;
+    if (bar(e)){
+        arr[0]=10;
+    }
+    else {
+        arr[0]=1000;
+    }
+    return arr;
+}
+
+boolean bar (float a){
+    return a<0.1;
+}

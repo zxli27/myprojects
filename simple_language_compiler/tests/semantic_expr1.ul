@@ -1,0 +1,12 @@
+void foo (char c)
+{
+    return;
+}
+
+void main ()
+{
+    char[2] a;
+
+    a[0]='z';
+    (true+'f');
+}

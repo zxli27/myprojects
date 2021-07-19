@@ -1,0 +1,4 @@
+int  () {
+	int x;
+	int y;
+}

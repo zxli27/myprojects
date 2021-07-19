@@ -1,0 +1,14 @@
+int foo ()
+{
+    int i;
+
+    while (true)
+    {
+        i=i+1;
+    }
+    else {
+        i=i-1;
+    }
+}
+
+

@@ -1,0 +1,19 @@
+void main ()
+{
+    int x;
+    float y;
+    boolean z;
+    char c;
+    string s;
+    z=true;
+    if (z) {
+        y=0.001;
+        s="correct";
+    }
+    else {
+        y=3523.325;
+        c='f';
+    }
+    println y;
+    println s;
+}

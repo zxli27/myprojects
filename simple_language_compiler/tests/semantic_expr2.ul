@@ -1,0 +1,12 @@
+void foo (char c)
+{
+    return;
+}
+
+void main ()
+{
+    boolean a;
+
+    a=false;
+    (true+a);
+}

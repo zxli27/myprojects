@@ -1,0 +1,46 @@
+string foo ()
+{
+    string[10] arr;
+    int i;
+
+    i=0;
+    while (i<10)
+    {
+        arr[i]="ele";
+        i=i+1;
+    }
+    return arr;
+}
+
+void main ()
+{
+    float f;
+    string[10] strArr;
+
+    ;
+    ;
+    f=1.234;
+    ;
+    string[1]="ele1";
+    strArr=foo();
+    ;
+    if (true)
+    {
+        if (false)
+        {
+            if (1+2==3)
+            {
+                print "hello";
+                ;
+            }
+            else
+            {
+                print "HELLO";
+            }
+        }
+    }
+    else
+    {
+        (123);
+    }
+}
