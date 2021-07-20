@@ -1,9 +1,0 @@
-void main()
-{
-}
-
-int[3] foo()
-{
-    int[2] a;
-    return a;
-}

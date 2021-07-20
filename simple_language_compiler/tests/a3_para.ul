@@ -1,7 +1,0 @@
-void main ()
-{
-}
-
-void foo (int a, boolean b, char c, string d, float e){
-    return;
-}

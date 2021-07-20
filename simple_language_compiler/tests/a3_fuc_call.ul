@@ -1,8 +1,0 @@
-void main ()
-{
-    foo(1, true, 'a', "b", 1.24);
-}
-
-void foo (int a, boolean b, char c, string d, float e){
-    println "parameters work well";
-}

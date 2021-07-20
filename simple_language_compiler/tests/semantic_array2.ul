@@ -1,6 +1,0 @@
-void main()
-{
-    int[10] a;
-    int b;
-    b=a['c'];
-}
