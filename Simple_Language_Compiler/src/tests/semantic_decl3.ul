@@ -1,0 +1,9 @@
+void main ()
+{
+    return;
+}
+
+void foo (int a)
+{
+    char a;
+}

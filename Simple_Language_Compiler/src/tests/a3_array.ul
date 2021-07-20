@@ -1,0 +1,11 @@
+void main ()
+{
+    int x;
+    int z;
+    int[3] y;
+    y[0]=1;
+    x=6+y[0];
+    z=0;
+    println x;
+    println y[z];
+}

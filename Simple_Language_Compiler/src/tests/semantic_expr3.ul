@@ -1,0 +1,14 @@
+void foo ()
+{
+    return;
+}
+
+void bar ()
+{
+    return;
+}
+
+void main ()
+{
+    foo()*bar();
+}

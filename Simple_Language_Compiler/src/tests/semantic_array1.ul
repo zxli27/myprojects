@@ -1,0 +1,6 @@
+void main()
+{
+    int[10] a;
+    int[10] b;
+    a=a+b;
+}
