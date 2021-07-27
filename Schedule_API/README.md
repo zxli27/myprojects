@@ -1,4 +1,4 @@
-# Appointment_API
+# Schedule_API
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/zxli27/myprojects)
 
 
@@ -41,14 +41,14 @@ Return:
 ``` json
 [
     {
-    "time": 2020-3-20,
+    "time": "2020-3-20",
     "duration": 2,
-    "location": Whafe Street
+    "location": "Whafe Street"
     },
     {
-    "time": 2020-10-08,
+    "time": "2020-10-08",
     "duration": 5,
-    "location": Victoria
+    "location": "Victoria"
     }
 ]
 
@@ -82,9 +82,9 @@ Return:
 
 ``` json
 {
-    "time": 2020-3-20,
+    "time": "2020-3-20",
     "duration": 2,
-    "location": Whafe Street
+    "location": "Whafe Street"
 }
 ```
 
@@ -143,9 +143,9 @@ Return:
 
 ``` json
 {
-    "time": 2020-3-20,
+    "time": "2020-3-20",
     "duration": 2,
-    "location": Whafe Street
+    "location": "Whafe Street"
 }
 ```
 ---
