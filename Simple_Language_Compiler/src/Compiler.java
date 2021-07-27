@@ -34,9 +34,7 @@ public class Compiler {
 			TempVisitor tVisitor = new TempVisitor(programName);
 			program.accept(tVisitor);
 			IRProgram prog = tVisitor.program;
-			// FileWriter myWriter = new FileWriter(programName+".ir");
-			// myWriter.write(prog.toString());
-			// myWriter.close();
+
 			CodeGenVisitor cVisitor = new CodeGenVisitor(prog);
 			cVisitor.toFile();
 	
