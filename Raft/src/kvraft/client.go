@@ -3,11 +3,16 @@ package kvraft
 import "../labrpc"
 import "crypto/rand"
 import "math/big"
+import "sync"
 
 
 type Clerk struct {
+	mu sync.Mutex
 	servers []*labrpc.ClientEnd
-	// You will have to modify this struct.
+
+	clientId int64
+	reqId int
+	leaderId int
 }
 
 func nrand() int64 {
@@ -20,40 +25,69 @@ func nrand() int64 {
 func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 	ck := new(Clerk)
 	ck.servers = servers
-	// You'll have to add code here.
+
+	ck.clientId = nrand()
+	ck.leaderId = -1
+	ck.reqId = 0
 	return ck
 }
 
-//
-// fetch the current value for a key.
-// returns "" if the key does not exist.
-// keeps trying forever in the face of all other errors.
-//
-// you can send an RPC with code like this:
-// ok := ck.servers[i].Call("KVServer.Get", &args, &reply)
-//
-// the types of args and reply (including whether they are pointers)
-// must match the declared types of the RPC handler function's
-// arguments. and reply must be passed as a pointer.
-//
-func (ck *Clerk) Get(key string) string {
 
-	// You will have to modify this function.
-	return ""
+func (ck *Clerk) Get(key string) string {
+	args := GetArgs{Key: key, ClientId: ck.clientId}
+
+	ck.mu.Lock()
+	args.ReqId = ck.reqId
+	ck.reqId++
+	ck.mu.Unlock()
+	for {
+		if ck.leaderId >=0 {
+			var reply GetReply
+			ok := ck.servers[ck.leaderId].Call("KVServer.Get", &args, &reply) 
+			if ok && reply.IsLeader {
+				return reply.Value
+			} else {
+				ck.leaderId = -1
+			}
+		}
+		for i, v := range ck.servers {
+			var reply GetReply
+			ok := v.Call("KVServer.Get", &args, &reply)
+			if ok && reply.IsLeader {
+				ck.leaderId = i
+				return reply.Value
+			}
+		}
+	}
 }
 
-//
-// shared by Put and Append.
-//
-// you can send an RPC with code like this:
-// ok := ck.servers[i].Call("KVServer.PutAppend", &args, &reply)
-//
-// the types of args and reply (including whether they are pointers)
-// must match the declared types of the RPC handler function's
-// arguments. and reply must be passed as a pointer.
-//
 func (ck *Clerk) PutAppend(key string, value string, op string) {
-	// You will have to modify this function.
+
+	args := PutAppendArgs{Key: key, ClientId: ck.clientId, Value: value, Op: op}
+
+	ck.mu.Lock()
+	args.ReqId = ck.reqId
+	ck.reqId++
+	ck.mu.Unlock()
+	for {
+		if ck.leaderId >=0 {
+			var reply GetReply
+			ok := ck.servers[ck.leaderId].Call("KVServer.PutAppend", &args, &reply) 
+			if ok && reply.IsLeader {
+				return 
+			} else {
+				ck.leaderId = -1
+			}
+		}
+		for i, v := range ck.servers {
+			var reply PutAppendReply
+			ok := v.Call("KVServer.PutAppend", &args, &reply)
+			if ok && reply.IsLeader {
+				ck.leaderId = i
+				return
+			}
+		}
+	}
 }
 
 func (ck *Clerk) Put(key string, value string) {
